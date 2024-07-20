@@ -1,29 +1,54 @@
 import { Tree } from "./TreeClass";
 
-const test = new Tree([1, 7, 4, 23, 8, 9, 3, 5, 67, 6345, 324]);
-
-
-test.prettyPrint(test.buildTree());
-test.insert(56);
-test.prettyPrint(test.root)
-test.insert(0);
-test.prettyPrint(test.root)
-test.insert(56);
-test.prettyPrint(test.root)
-test.delete(3);
-test.prettyPrint(test.root)
-
-
-// const test = new Tree([1, 2, 3]);
-
+// const test = new Tree([1, 7, 8, 9]);
 // test.buildTree();
-// test.prettyPrint(test.root);
-test.delete(2);
-test.prettyPrint(test.root);
-// console.log(test.minVal(test.root));
-console.log(test.find(23222));
-console.log(test.levelOrderIterative(heyLog));
 
-function heyLog(jude) {
-    console.log(`Hey, ${jude.data}!`);
+// test.insert(10);
+// // test.insert(2546);
+// // test.insert(4456);
+// test.prettyPrint(test.root)
+// test.rebalance();
+// test.prettyPrint(test.root)
+
+
+// console.log(test.isBalanced());
+// function heyLog(jude) {
+//     console.log(`Hey, ${jude.data}!`);
+// }
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
+
+function getArrayOfNums() {
+    let arr = [];
+    for (let i = 0; i < getRandomInt(50); i++) {
+        arr.push(getRandomInt(100));
+    }
+    return arr;
+}
+
+const treeArr = getArrayOfNums();
+const tree = new Tree(treeArr);
+tree.buildTree();
+tree.prettyPrint(tree.root);
+console.log(tree.isBalanced());
+console.log(tree.levelOrderRecursive());
+console.log(tree.inOrder());
+console.log(tree.preOrder());
+console.log(tree.postOrder());
+tree.insert(101);
+tree.insert(1001);
+tree.insert(151);
+tree.insert(396);
+tree.prettyPrint(tree.root);
+console.log(tree.isBalanced());
+tree.rebalance()
+tree.prettyPrint(tree.root);
+console.log(tree.isBalanced());
+console.log(tree.levelOrderRecursive());
+console.log(tree.inOrder());
+console.log(tree.preOrder());
+console.log(tree.postOrder());
+
