@@ -239,6 +239,38 @@ export class Tree {
 
     return counter;
   }
+
+  isBalanced(root = this.root) {
+    // base case
+    if (!root) return 0;
+
+    // check if left subtree is balanced
+    let lHeight = this.isBalanced(root.left);
+    if (lHeight === -1) return -1;
+
+    // check if right subtree is balanced
+    let rHeight = this.isBalanced(root.right);
+    if (rHeight === -1) return -1;
+
+    // check balanced
+    if (Math.abs(lHeight - rHeight) > 1) return -1;
+
+    return 1 + Math.max(lHeight, rHeight);
+  }
+
+  rebalance(root = this.root) {
+    // inOrder traversal of current tree
+    const sortedObjArr = this.inOrder();
+
+    // currently have array of objects, we need array of values
+    let sortedArr = [];
+    sortedObjArr.forEach(node => {
+        sortedArr.push(node.data);
+    })
+    
+    // build rebalanced tree
+    this.buildTree(sortedArr);
+  }
     // helper functions
 
     // find the in order successor
