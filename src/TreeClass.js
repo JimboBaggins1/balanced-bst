@@ -213,6 +213,32 @@ export class Tree {
         if (output.length > 0) return output;
     }
 
+  height(node = this.root) {
+    // base case
+    if (!node) return node;
+    let lHeight = 0;
+    let rHeight = 0;
+    if (node.left) {
+      lHeight = this.height(node.left);
+    }
+
+    if (node.right) {
+      rHeight = this.height(node.right);
+    }
+
+    return lHeight > rHeight ? lHeight + 1 : rHeight + 1;
+  }
+
+  depth(node, root = this.root, counter = 0) {
+    // base case
+    if (!root) return root;
+
+    // traverse tree
+    if (node < root.data) return this.depth(node, root.left, counter + 1);
+    else if (node > root.data) return this.depth(node, root.right, counter + 1);
+
+    return counter;
+  }
     // helper functions
 
     // find the in order successor
