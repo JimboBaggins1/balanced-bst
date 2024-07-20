@@ -148,7 +148,67 @@ export class Tree {
         // dequeue node
         queue.shift();
 
-        this.levelOrderRecursive(callback, queue, output)
+    this.levelOrderRecursive(callback, queue, output);
+
+    if (output.length > 0) return output;
+  }
+
+  inOrder(callback, root = this.root, output = []) {
+    // base case
+    if (!root) {
+      root;
+    }
+
+    // traverse left subtree
+    if (root.left) {
+      this.inOrder(callback, root.left, output);
+    }
+
+    // visit root
+    typeof callback === "function" ? callback(root) : output.push(root);
+
+    // traverse right subtree
+    if (root.right) {
+      this.inOrder(callback, root.right, output);
+    }
+
+    if (output.length > 0) return output;
+  }
+
+  preOrder(callback, root = this.root, output = []) {
+    // base case
+    if (!root) {
+      return root;
+    }
+
+    // visit root
+    typeof callback === "function" ? callback(root) : output.push(root);
+
+    // visit left subtree
+    if (root.left) {
+      this.preOrder(callback, root.left, output);
+    }
+
+    // visit right subtree
+    if (root.right) {
+      this.preOrder(callback, root.right, output);
+    }
+
+    if (output.length > 0) return output;
+  }
+
+  postOrder(callback, root = this.root, output = []) {
+    // base case
+    if (!root) return root;
+
+    // visit left subtree
+    if (root.left) this.postOrder(callback, root.left, output);
+
+    // visit right subtree
+    if (root.right) this.postOrder(callback, root.right, output);
+
+    // visit root
+    typeof callback === "function" ? callback(root) : output.push(root);
 
         if (output.length > 0) return output;
     }
